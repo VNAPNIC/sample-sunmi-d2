@@ -506,4 +506,4 @@ private void show(long fileId) {
 ```
 
 Additional instructions:
-The above is the layout currently supported by the Shangmi T1 built-in display program. More layouts will be added later, and developers can also develop sub-display programs that adapt to the merchant T1.
+The above is the layout currently supported by the Sunmi T1 built-in display program. More layouts will be added later, and developers can also develop sub-display programs that adapt to the merchant T1.
