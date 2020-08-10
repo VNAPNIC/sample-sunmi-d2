@@ -5,12 +5,12 @@
 1. The main screen is 14 inches and the secondary screen is 7 inches.
 
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/1.png) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/1.png) 
 
 
 2. The main screen is 14 inches and the secondary screen is 14 inches.
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/2.png) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/2.png) 
 
 
 The main and secondary screens are all running SUNMIUI system, and T1 dual-screen communication is completed through the interface packaged by Shangmi.
@@ -37,7 +37,7 @@ To operate the 7-inch and 14-inch initialization process, please download the re
 ```
 dependencies {
     compile 'com.sunmi:DS_Lib:1.0.2'
-    compile 'com.google.code.gson:gson:2.6.2'//gson任意版本
+    compile 'com.google.code.gson:gson:2.6.2'//gson All versions
 }
 ```
 
@@ -67,7 +67,7 @@ mDSKernel.addReceiveCallback(mReceiveCallback);
 
 Note: For the interface related to the main and secondary screen communication, please refer to the T1 dual-screen communication interface document in the resource file. The sub-screen guest display operation instruction kit sees the code in Demo:sunmi.ds.data for the operation of the sub-screen display command. The encapsulation is also the APP protocol layer in the framework diagram.
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/3.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/3.jpg) 
 
 After completing the above operations, you can send data to the secondary screen. The following explains the display layout of the 7-inch screen and the 14-inch screen and the data format to be transmitted under each layout.
 
@@ -80,7 +80,7 @@ The following explains the data content that the main screen app needs to pass t
 
 #### 1. Full screen display of the specified picture on the main screen (7-inch screen)
 The effect diagram is as follows:
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/4.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/master/image/4.jpg) 
 
 To display the above layout, just call DSKernel's sendFile method to send a picture to the sub-display program. It is recommended that the picture resolution be 1024*600, or the corresponding aspect ratio picture, otherwise it will be zoomed, the picture is instantly displayed in real time, and will be cached and reused. That is to say, theoretically, it is not necessary to use it every time. The program passes the picture.
 
@@ -94,19 +94,19 @@ String filePath = "xxx/img.png"; // This is the local path of the image to be di
 mDSKernel.sendFile(DSKernel.getDSDPackageName(), filePath, new ISendCallback(){
     public void onSendSuccess(long l) {
     // A successful callback is sent. The parameter long l is the unique identifier of the file on the secondary screen. The developer can save the field locally. The next time, the field can be used to query whether the file exists in the secondary display program.
-       showImg(fileId);//发送命令，让副屏显示图片
+       showImg(fileId);//Send a command to display the picture on the secondary screen
     }
     public void onSendFail(int i, String s) {
     //Send failed callback
     }
     public void onSendProcess(long l, long l1) {
-    //发送状态的回调
+    //Send status callback
     }
 });
 
 void showImg(long fileId){
     String json = UPacketFactory.createJson(DataModel.SHOW_IMG_WELCOME, "def");
-    mDSKernel.sendCMD(DSKernel.getDSDPackageName(), json, fileId, null);//该命令会让副屏显示图片
+    mDSKernel.sendCMD(DSKernel.getDSDPackageName(), json, fileId, null);//This command will display the picture on the secondary screen
 }
 ```
 
@@ -120,8 +120,8 @@ mDSKernel.checkFileExist(fileId, new ICheckFileCallback(){
      
      @Override
      public void onResult(boolean arg0) {
-        //返回值为true是存在
-        //返回值false是不存在  
+        //The return value is true if it exists
+        //The return value false does not exist 
          }                                    
     });
 ```
@@ -131,26 +131,26 @@ Display the two lines of characters in the title and content. The layout format 
 
 The effect chart is as follows:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/5.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/5.jpg) 
 
-发数据时代码如下：
+The code when sending data is as follows：
 ```
 JSONObject json = new JSONObject();
-json.put("title", title);//title为上面一行的标题内容
-json.put("content", content);//content为下面一行的内容
+json.put("title", title);//title is the title content of the above line
+json.put("content", content);//content is the content of the following line
 String jsonStr = json.toString();
-//构建DataPacket类
+//Build the DataPacket class
 DataPacket packet = UPacketFactory.buildShowText(
-        DSKernel.getDSDPackageName(), jsonStr, callback);//第一个参数是接收数据的副显应用的包名，这里参照Demo就可以,第二个参数是要显示的内容字符串，第三个参数为结果回调。
+        DSKernel.getDSDPackageName(), jsonStr, callback);//The first parameter is the package name of the secondary display application that receives the data, here you can refer to Demo, the second parameter is the content string to be displayed, and the third parameter is the result callback.
 
-mDSKernel.sendData(packet);//调用sendData方法发送文本
+mDSKernel.sendData(packet);//Call the sendData method to send text
 ```
 
 #### 3. Display picture + text (7-inch screen) in the screen area
 
 The layout format is also stipulated by the quotient. Currently, this layout of the 7-inch screen is recommended to display the following information: the picture is a two-dimensional code, and the text on the right has only two lines of title and content.
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg) 
 
 The data code is as follows:
 
@@ -165,10 +165,10 @@ String titleContentJsonStr= json.toString();
         showQRCode(fileId);//QR code image transmission
     }
     public void onSendFail(int i, String s) {
-      //错误回调
+      //Error callback
     }
     public void onSendProcess(long l, long l1) {
-    //发送状态回调
+    //Send status callback
     }
 });
 
@@ -195,9 +195,9 @@ The table data is displayed in full screen, and the display layout is fixed with
 
 The effect chart is as follows:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg) 
 
-代码如下：
+code show as below：
 
 ```
 /**
@@ -238,7 +238,7 @@ The data format of jsonStr above is shown in the following box. Please ask the d
               "param4": "1"，
              "param5":"12.00"
             }
-            ... ...//这里是相同格式的数据
+            ... ...//Here is the data in the same format
         ],
         "KVPList": [
             {
@@ -277,7 +277,7 @@ The left area shows the picture, the recommended picture size is 1186*1080; the 
 
 Effect chart:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg) 
 
 code show as below:
 
@@ -285,14 +285,14 @@ code show as below:
 String filePath = "xxx/img.png";//Displayed image path
 mDSKernel.sendFile(DSKernel.getDSDPackageName(), filePath, new ISendCallback() {
     public void onSendSuccess(long fileId) {
-        show(fileId, jsonStr);//图片发送成功，显示文字内容
+        show(fileId, jsonStr);//The picture is sent successfully and the text content is displayed
     } 
     public void onSendFail(int errorId, String errorInfo) {}
     public void onSendProcess(long total, long sended) {}
 });
 
 void show(long fileId, String jsonStr){
-    jsonStr = UPacketFactory.createJson(DataModel.SHOW_IMG_LIST, jsonStr);//第一个参数DataModel.SHOW_IMG_LIST为显示布局模式，jsonStr为要显示的内容字符
+    jsonStr = UPacketFactory.createJson(DataModel.SHOW_IMG_LIST, jsonStr);//The first parameter DataModel.SHOW_IMG_LIST is the display layout mode, jsonStr is the content character to be displayed
     mDSKernel.sendCMD(DSKernel.getDSDPackageName(), jsonStr, fileId,null);
 }
 
@@ -364,9 +364,9 @@ The left area shows the slideshow. The recommended image size is 1186*1080. The 
 
 Effect chart:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg) 
 
-代码如下：
+code show as below：
 
 ```
 List<String> paths = new ArrayList<>();
@@ -405,13 +405,13 @@ The left area shows the video, the recommended resolution is 1186*1080; the righ
 
 Effect chart:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg)
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg)
 
 ```
-String filePath = "xxx/video.mp4";//显示的视频路径
+String filePath = "xxx/video.mp4";//Displayed video path
 mDSKernel.sendFile(DSKernel.getDSDPackageName(), filePath, new ISendCallback() {
     public void onSendSuccess(long fileId) {
-        show(fileId, jsonStr);//视频发送成功
+        show(fileId, jsonStr);//Video sent successfully
     } 
     public void onSendFail(int errorId, String errorInfo) {}
     public void onSendProcess(long total, long sended) {}
@@ -428,7 +428,7 @@ The data format rules of jsonStr above are the same as those in layout 2, and wi
 
 Effect chart:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg)
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg)
 
 Similar to the 7-inch screen, the picture is sent first. After the transmission is successful, the control command is displayed in the callback to display the picture. The code is as follows:
 
@@ -436,7 +436,7 @@ Similar to the 7-inch screen, the picture is sent first. After the transmission 
 String filePath = "/sdcard/img.png";
 mDSKernel.sendFile(DSKernel.getDSDPackageName(), filePath, new ISendCallback(){
     public void onSendSuccess(long l) {
-       showImg(fileId);//先发送图片
+       showImg(fileId);//Send picture first
     }
     public void onSendFail(int i, String s) {}
     public void onSendProcess(long l, long l1) {}
@@ -452,7 +452,7 @@ void showImg(long fileId){
 
 Effect chart:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg)
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg)
 
 
 When the video is displayed for the first time, the process of passing the video may be very long. The developer should first pass the video to the sub-display program at the appropriate time. The sub-display program will cache the video. The code is as follows:
@@ -477,14 +477,14 @@ void playVideo(long fileId){
 
 The effect chart is as follows:
 
-![Alt SUNMI](https://github.com/sunmideveloper/T1_Dual_Screen_Communication/blob/master/image/7.jpg)
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/7.jpg)
 
 
 The developer needs to prepare multiple images, call the sendFiles method to pass the path of multiple images to the sub-display program. The default switching time of the slide is 10 seconds. The main screen app can change the time by passing parameters. For details, please refer to the following code.
 
 ```
 JSONObject json = new JSONObject();
-json.put("interval",5000); //幻灯片的切换时间，用毫秒计算，如果不传默认是10000毫秒
+json.put("interval",5000); //The switching time of the slide show, calculated in milliseconds, if not passed, the default is 10000 millisecond
 List<String> pathList = new ArrayList<>();
 pathList.add("/sdcard/img1.png");
 pathList.add("/sdcard/img2.png");
