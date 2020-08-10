@@ -80,7 +80,7 @@ The following explains the data content that the main screen app needs to pass t
 
 #### 1. Full screen display of the specified picture on the main screen (7-inch screen)
 The effect diagram is as follows:
-![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/master/image/4.jpg) 
+![Alt SUNMI](https://github.com/VNAPNIC/sample-sunmi-d2/blob/master/image/4.jpg) 
 
 To display the above layout, just call DSKernel's sendFile method to send a picture to the sub-display program. It is recommended that the picture resolution be 1024*600, or the corresponding aspect ratio picture, otherwise it will be zoomed, the picture is instantly displayed in real time, and will be cached and reused. That is to say, theoretically, it is not necessary to use it every time. The program passes the picture.
 
