@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">sunmiTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_send_imgs">发送轮播图片</string>
+    <string name="main_shop_list">购物清单</string>
+    <string name="play_video">播放视频</string>
+    <string name="main_sunmilk">商米奶茶收银DEMO</string>
+    <string name="main_tb_goods_no">数量</string>
+    <string name="main_tb_goods_name">商品名</string>
+    <string name="main_tb_goods_price">单价</string>
+    <string name="main_goods_zhaopai_milk">招牌奶茶\n￥10.00</string>
+    <string name="main_goods_yuanyang_milk">冻顶鸳鸯奶茶\n￥16.00</string>
+    <string name="main_other_function">其他功能</string>
+    <string name="main_goods_name_zhaopai">招牌奶茶</string>
+    <string name="main_goods_name_yuanyang">冻顶鸳鸯奶茶</string>
+    <string name="main_total_price">总价：</string>
+    <string name="main_num">数量：</string>
+    <string name="main_favorable_money">优惠：</string>
+    <string name="main_collect">收款：</string>
+    <string name="main_collect2">收款</string>
+    <string name="main_clear">清除</string>
+    <string name="main_nofile">文件不存在</string>
+    <string name="main_instruction">说明：该DEMO模拟一个奶茶店的收银软件的业务流程，请参照如下流程操作。\n1.Demo启动的时候，向副显App传图片\(Demo自动传递\)，副显App显示自定义欢迎页。\n2.顾客点单\(点击招牌奶茶￥10.00\)，传图片加字符数据，左边显示图片，右边显示清单。\n3.第二件商品\(点击双拼奶茶12.00\)，传图片加字符数据，左边显示图片，右边显示清单。\n4.收款\(点击收款\)，传图片加字符，左边显示图片，右边显示清单。\n
+5.回到欢迎页\(点击清除\)，传图片，副显App重新显示欢迎页。\n</string>
+
+</resources>
