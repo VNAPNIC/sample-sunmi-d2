@@ -1,6 +1,6 @@
 # T1 dual screen communication
 
-## Shangmi T1 has two dual screen configurations：
+## Sunmi T1 has two dual screen configurations：
 
 1. The main screen is 14 inches and the secondary screen is 7 inches.
 
