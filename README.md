@@ -22,7 +22,7 @@ Usually the developer's business app runs on the main screen, and the secondary 
 1. Shangmi has a display program built in the T1 sub-screen system (hereinafter referred to as 'sub-display program'). The app of the main screen complies with the unified specifications of Shangmi, and sends data of a specific format to the sub-display program. The program displays the content. (development costs are low, recommended).
 2. Developers develop their own screen display app (high development cost, not recommended).
 
-## How to use the Shangmi sub-display program
+## How to use the Sunmi sub-display program
 The quotient specifies the layout that the sub-display program can display. The developer modifies the code of the main screen app and transmits the data of the relevant format to the sub-display program.
 
 The following three paragraphs will explain how to use the sub-display program:
